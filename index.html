@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Microservice Frontend</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Recipe Management System</h1>
+    </header>
+    
+    <div class="container">
+        <section id="login-section">
+            <h2>1. User Login</h2>
+            <input type="text" id="login-username" placeholder="Username" value="testuser">
+            <input type="password" id="login-password" placeholder="Password" value="password123">
+            <button onclick="handleLogin()">Login</button>
+            <p id="token-display">JWT Token: (Not logged in)</p>
+            <p class="status-message" id="login-status"></p>
+        </section>
+
+        <hr>
+
+        <section id="create-recipe-section">
+            <h2>2. Create Recipe (Requires Token)</h2>
+            <input type="text" id="recipe-title" placeholder="Recipe Title">
+            <textarea id="recipe-instructions" placeholder="Instructions..."></textarea>
+            <input type="file" id="recipe-image">
+            <button onclick="handleCreateRecipe()" disabled>Create Recipe</button>
+            <p class="status-message" id="recipe-status"></p>
+        </section>
+        
+        <hr>
+        
+        <section id="recipe-list-section">
+            <h2>3. Your Recipes</h2>
+            <button onclick="handleGetRecipes()" disabled>Fetch My Recipes</button>
+            <ul id="recipe-list">
+                </ul>
+        </section>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
