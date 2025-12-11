@@ -14,7 +14,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-# --- Database Model (PostgreSQL) ---
+#Database Model - PostgreSQL
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
@@ -31,7 +31,7 @@ def create_tables():
     # Only necessary for initial local testing/setup, K8s should handle migrations
     db.create_all()
 
-# --- Routes ---
+#  routes
 
 @app.route('/users/register', methods=['POST'])
 def register_user():
