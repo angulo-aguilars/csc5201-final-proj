@@ -14,20 +14,20 @@ CORS(app)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'sandra1212')
 MONGO_URI = os.environ.get('MONGO_URI', 'mongodb://localhost:27017/')
 
-# --- CONFIGURATION FOR IMAGE UPLOADS ---
-# Define the internal folder where images will be saved inside the container
+# CONFIGURATION FOR IMAGE UPLOADS
+# internal folder where images will be saved inside the container
 UPLOAD_FOLDER = '/app/images' 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-# Ensure the UPLOAD_FOLDER exists (important for container startup)
+# Ensure the UPLOAD_FOLDER exists
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER, exist_ok=True)
-# --- Database Setup (MongoDB) ---
+#Database Setup - MongoDB
 client = MongoClient(MONGO_URI)
 db = client['recipe_manager']
 recipes_collection = db['recipes']
 
-# --- Middleware/Decorators ---
+#Middleware/Decorators
 
 def token_required(f):
     """
@@ -79,7 +79,7 @@ def log_request(response):
     
     return response
 
-# --- Routes (Requires Token) ---
+#Routes - Requires Token
 
 @app.route('/recipes', methods=['POST'])
 @token_required
