@@ -2,7 +2,7 @@ const USER_SERVICE_URL = 'http://localhost:5001';
 const CATALOG_SERVICE_URL = 'http://localhost:5002';
 let currentToken = '';
 
-// --- Utility Functions ---
+//Utility Functions
 
 function setToken(token) {
     currentToken = token;
@@ -35,8 +35,7 @@ window.onload = () => {
     }
 };
 
-// --- API Handlers ---
-
+// API Handlers
 async function handleLogin() {
     const username = document.getElementById('login-username').value;
     const password = document.getElementById('login-password').value;
