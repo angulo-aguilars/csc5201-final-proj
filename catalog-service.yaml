@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: catalog-service-deployment
+spec:
+  replicas: 3 # Kubernetes: Demonstrate scalability
+  selector:
+    matchLabels:
+      app: catalog-service
+  template:
+    metadata:
+      labels:
+        app: catalog-service
+    spec:
+      containers:
+      - name: catalog-service
+        image: anguloaguilars/catalog-service:latest
+        ports:
+        - containerPort: 5002
+        env:
+        - name: SECRET_KEY
+          value: "sandra1212"
+        # Connect to the MongoDB service using its K8s DNS name
+        - name: MONGO_URI
+          value: "mongodb://catalog-mongo-service:27017/"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: catalog-service
+spec:
+  selector:
+    app: catalog-service
+  ports:
+    - protocol: TCP
+      port: 5002
+      targetPort: 5002
+  type: LoadBalancer # Expose to the outside world
